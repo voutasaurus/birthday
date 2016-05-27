@@ -12,6 +12,12 @@ var (
 	flagPigeons = flag.Int("p", 0, "specify the number of pigeons to place randomly in holes")
 )
 
+var sayRounding = map[int]string{
+	-1: " (rounded up)",
+	0:  " (exactly)",
+	1:  " (rounded down)",
+}
+
 func main() {
 	flag.Parse()
 	holes := int64(*flagHoles)
@@ -20,12 +26,6 @@ func main() {
 	pCollision, rounding := prob(holes, pigeons)
 	fmt.Print(pCollision)
 	fmt.Fprintf(os.Stderr, "%s\n", sayRounding[rounding])
-}
-
-var sayRounding = map[int]string{
-	-1: " (rounded up)",
-	0:  " (exactly)",
-	1:  " (rounded down)",
 }
 
 func pow(x, y int64) *big.Int {
