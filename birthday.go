@@ -1,9 +1,32 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math/big"
+	"os"
 )
+
+var (
+	flagHoles   = flag.Int("h", 0, "specify the number of holes available")
+	flagPigeons = flag.Int("p", 0, "specify the number of pigeons to place randomly in holes")
+)
+
+func main() {
+	flag.Parse()
+	holes := int64(*flagHoles)
+	pigeons := int64(*flagPigeons)
+
+	pCollision, rounding := prob(holes, pigeons)
+	fmt.Print(pCollision)
+	fmt.Fprintf(os.Stderr, "%s\n", sayRounding[rounding])
+}
+
+var sayRounding = map[int]string{
+	-1: " (rounded up)",
+	0:  " (exactly)",
+	1:  " (rounded down)",
+}
 
 func fac(x int64) *big.Int {
 	factorial := new(big.Int)
@@ -38,12 +61,4 @@ func prob(m, n int64) (float64, int) {
 	b := probability.Cmp(z.SetFloat64(p))
 
 	return p, b
-}
-
-func main() {
-	holes := int64(3500 * 1000)
-	pidgeons := int64(4000)
-
-	pCollision, rounding := prob(holes, pidgeons)
-	fmt.Println(pCollision, rounding)
 }
