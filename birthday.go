@@ -28,18 +28,12 @@ var sayRounding = map[int]string{
 	1:  " (rounded down)",
 }
 
-func fac(x int64) *big.Int {
-	factorial := new(big.Int)
-	return factorial.MulRange(1, x)
-}
-
 func pow(x, y int64) *big.Int {
 	power := new(big.Int)
 	return power.Exp(big.NewInt(x), big.NewInt(y), nil)
 }
 
 func prob(m, n int64) (float64, int) {
-
 	probability := new(big.Rat)
 	numerator := new(big.Int)
 
