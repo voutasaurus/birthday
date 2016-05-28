@@ -15,7 +15,7 @@ Usage
 
 ```
 $ birthday -h $[3000*1000] -p 4000
-0.9305525919198558 (rounded up)
+0.9304702425130473
 ```
 
 N.B. The `$[3000*1000]` is bash syntax. `-h` and `-p` both expect an integer.
