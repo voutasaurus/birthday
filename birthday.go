@@ -17,7 +17,7 @@ func main() {
 	pigeons := float64(*flagPigeons)
 
 	p := prob(holes, pigeons)
-	fmt.Println(p)
+	fmt.Printf("%.2f%c\n", 100*p, '%')
 }
 
 // prob computes the probability of a collision i:e two pigeons share the same hole.
